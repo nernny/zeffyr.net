@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zeffyr - Minecraft Server</title>
+    <meta name="description" content="Zeffyr - Ванилльный и ламповые майнкрафт сервер" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="shortcut icon" href="https://i.imgur.com/qAxNolX.png" />
+  </head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-W3K6SRFV');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W3K6SRFV"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <body>
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#"  style="color: rgb(196, 196, 253);">Играть </a></li>
+        <li><a href="https://forms.zeffyr.net/">Проходка </a></li>
+        <li><a href="https://map.zeffyr.net/">Карта </a></li>
+      </ul>
+    <!-- </div> -->
+    </nav>
+    <main>
+      <div class="hero-section">
+        <div class="welcome-message">
+          <h1>Добро пожаловать на
+            <span class="server-name">zeffyr</span>
+          </h1>
+
+          <button class="play-button" onclick="window.location.href='https://forms.zeffyr.net/'">ИГРАТЬ СЕЙЧАС</button>
+        </div>
+        <div class="social-icons">
+          <a href="https://dc.zeffyr.net/" class="icon discord"><img src="social/icons8-discord-240.png" alt="discord"></a>
+          <a href="https://t.me/zeffyr_mc" class="icon telegram"><img src="social/icons8-telegram-256.png" alt="telegram"></a>
+          <!-- <a href="#" class="icon tiktok"><img src="icons8-tiktok-240.png" alt="tiktok"></a> -->
+        </div>
+      </div>
+      
+
+      <section class="features">
+        <h2>Особенности Нашего Сервера</h2>
+        <div class="features-grid" style="cursor: pointer;">
+          <div class="feature-card">
+            <div class="feature-icon">💸</div>
+            <h3>Банковская система</h3>
+            <p>Уникальная банковская система, позволяющая вам хранить и обменивать валюту.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📜</div>
+            <h3>Сюжет</h3>
+            <p>Интересный сюжет который не позволит вам заскучать</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Сообщество</h3>
+            <p>Хорошое и адекватное сообщество где вы можете найти друзей и приятелей</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔉</div>
+            <h3>Голосовой чат</h3>
+            <p>благодаря моду plasmo voice вы можете общаться с друзьями не выходя из игры</p>
+          </div>
+        </div>
+        <section class="image-section">
+          <h2>Не много красоты с нашего сервера</h2>
+          <div class="image-slider">
+            <div class="slider-container">
+              <div class="slider-images">
+                <img src="https://i.imgur.com/1RoY9B3.png" alt="Image 1">
+                <img src="https://i.imgur.com/N59nRO1.png" alt="Image 2">
+                <img src="https://i.imgur.com/dJSV020.png" alt="Image 3">
+              </div>
+              <button class="slider-button prev" onclick="prevSlide()">&#10094;</button>
+              <button class="slider-button next" onclick="nextSlide()">&#10095;</button>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <script>
+      document.querySelector('.menu-toggle').addEventListener('click', function() {
+          document.querySelector('.nav-links').classList.toggle('active');
+      });
+
+    </script>
+    <script>
+      // Initialize Lucide icons
+      lucide.createIcons();
+    </script>
+    <script>
+        const sliderImages = document.querySelector('.slider-images');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+          const totalSlides = sliderImages.children.length;
+          if (index >= totalSlides) {
+            currentIndex = 0;
+          } else if (index < 0) {
+            currentIndex = totalSlides - 1;
+          } else {
+            currentIndex = index;
+          }
+          sliderImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        let slideInterval = setInterval(nextSlide, 5000);
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+            resetInterval();
+        }
+
+  </script>
+  </body>
+</html>
