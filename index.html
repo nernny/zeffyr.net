@@ -36,19 +36,37 @@
     <nav class="navbar">
       <ul class="nav-links">
         <li><a href="#"  style="color: rgb(196, 196, 253);">Играть </a></li>
-        <!-- <li><a href="https://form.zeffyr.net/">Проходка </a></li> -->
+        <li><a href="https://t.me/zeffyr_bot">Донатик </a></li>
         <li><a href="https://map.zeffyr.net/">Карта </a></li>
       </ul>
     <!-- </div> -->
     </nav>
     <main>
+      <div class="overlay-request" style="display: none;">
+        <div class="request-box">
+          <button class="close-btn" onclick="closeOverlay()">×</button>
+          <h1>Подать проходку можно через</h1>
+          <div class="icon-line">
+            <a href="https://dc.zeffyr.net/" class="icon discord">
+              <img src="social/icons8-discord-240.png" alt="discord">
+            </a>
+            <span class="or-text">или</span>
+            <a href="https://t.me/zeffyr_bot" class="icon telegram">
+              <img src="social/icons8-telegram-256.png" alt="telegram">
+            </a>
+          </div>
+        </div>
+      </div>
+
+
       <div class="hero-section">
         <div class="welcome-message">
           <h1>Добро пожаловать на
             <span class="server-name">zeffyr</span>
           </h1>
 
-          <button class="play-button" onclick="window.location.href='https://dc.zeffyr.net/'">ИГРАТЬ СЕЙЧАС</button>
+          <button class="play-button">ИГРАТЬ СЕЙЧАС</button>
+          <!-- <button class="play-button" onclick="window.location.href='https://dc.zeffyr.net/'">ИГРАТЬ СЕЙЧАС</button> -->
         </div>
         <div class="social-icons">
           <a href="https://dc.zeffyr.net/" class="icon discord"><img src="social/icons8-discord-240.png" alt="discord"></a>
@@ -57,14 +75,22 @@
         </div>
       </div>
       
-
       <section class="features">
+        <section class="timer-section">
+          <h2>С начала сезона прошло:</h2>
+          <div class="time-display" id="time-since">
+            <div><span id="days">0</span><small>дней</small></div>
+            <div><span id="hours">00</span><small>часов</small></div>
+            <div><span id="minutes">00</span><small>минут</small></div>
+            <div><span id="seconds">00</span><small>секунд</small></div>
+          </div>
+        </section>
         <h2>Особенности Нашего Сервера</h2>
         <div class="features-grid" style="cursor: pointer;">
           <div class="feature-card">
             <div class="feature-icon">💸</div>
-            <h3>Банковская система</h3>
-            <p>Уникальная банковская система, позволяющая вам хранить и обменивать валюту.</p>
+            <h3>Доступность</h3>
+            <p>Возможность играть у нас абсолютно бесплатно просто подав заявку</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">📜</div>
@@ -82,7 +108,7 @@
             <p>благодаря моду plasmo voice вы можете общаться с друзьями не выходя из игры</p>
           </div>
         </div>
-        <section class="image-section">
+        <!-- <section class="image-section">
           <h2>Не много красоты с нашего сервера</h2>
           <div class="image-slider">
             <div class="slider-container">
@@ -95,7 +121,7 @@
               <button class="slider-button next" onclick="nextSlide()">&#10095;</button>
             </div>
           </div>
-        </section>
+        </section> -->
     </main>
 
     <script>
@@ -150,5 +176,57 @@
   
     gtag('config', 'G-70JEZ8Q6TV');
   </script>
+  <script>
+    function openOverlay() {
+      const overlay = document.querySelector('.overlay-request');
+      overlay.style.display = 'flex';
+      overlay.classList.remove('fade-out');
+      overlay.classList.add('fade-in');
+    }
+
+    function closeOverlay() {
+      const overlay = document.querySelector('.overlay-request');
+        overlay.classList.remove('fade-in');
+        overlay.classList.add('fade-out');
+
+        // Убираем из DOM после завершения анимации
+        setTimeout(() => {
+          overlay.style.display = 'none';
+        }, 300); // должно совпадать с .fadeOut длительностью (0.3s)
+      }
+
+      // Назначение действия на кнопку "ИГРАТЬ СЕЙЧАС"
+      document.addEventListener("DOMContentLoaded", () => {
+        const playBtn = document.querySelector(".play-button");
+        if (playBtn) {
+          playBtn.addEventListener("click", (e) => {
+            e.preventDefault(); // отменяем переход
+            openOverlay();
+          });
+        }
+      });
+    </script>
+    <script>
+      const startDate = new Date("2025-06-15T00:00:00");
+
+      function updateTimer() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    </script>
+
   </body>
 </html>
